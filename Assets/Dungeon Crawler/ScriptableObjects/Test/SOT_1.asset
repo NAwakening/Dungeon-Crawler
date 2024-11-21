@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8610e2d10a20c44aa15efee83467900, type: 3}
+  m_Name: SOT_1
+  m_EditorClassIdentifier: 
+  characterProperties:
+    name: Eulalio
+    currentHealth: 3
+    maxHealth: 10
+    spawnPosition: {x: -1, y: 3}
+    characterSprite: {fileID: 0}
+    prefabAgent: {fileID: 4508728809516688367, guid: d5b6008c36a72cd4dafacd6daf957cd1, type: 3}

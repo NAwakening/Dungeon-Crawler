@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8610e2d10a20c44aa15efee83467900, type: 3}
+  m_Name: SOT_0
+  m_EditorClassIdentifier: 
+  characterProperties:
+    name: Toribio
+    currentHealth: 4
+    maxHealth: 20
+    spawnPosition: {x: 2, y: 2}
+    characterSprite: {fileID: 0}
+    prefabAgent: {fileID: 1924325280389380605, guid: bea63977193ced44890d7c209cbabdac, type: 3}
