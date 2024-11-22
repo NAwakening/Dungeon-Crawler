@@ -64,5 +64,14 @@ namespace N_Awakening.DungeonCrawler
         }
 
         #endregion
+
+        #region GettersandSetters
+
+        public bool IsHitBoxActive
+        {
+            get { return _isHitBoxActive; }
+        }
+
+        #endregion
     }
 }

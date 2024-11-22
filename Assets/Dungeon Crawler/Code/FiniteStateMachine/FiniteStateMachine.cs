@@ -24,6 +24,11 @@ namespace N_Awakening.DungeonCrawler
         ATTACKING_DOWN,
         ATTACKING_LEFT,
         ATTACKING_RIGHT,
+        //
+        SPRINTING_UP,
+        SPRINTING_DOWN,
+        SPRINTIN_LEFT,
+        SPRINTIN_RIGHT,
         DEATH
     }
 
@@ -38,7 +43,10 @@ namespace N_Awakening.DungeonCrawler
         MOVE_RIGHT,
         //ATTACK
         ATTACK,
-        SPRINT,
+        SPRINT_UP,
+        SPRINT_DOWN,
+        SPRINT_LEFT,
+        SPRINT_RIGHT,
         DIE //TODO: Complete the code to administate this new state
     }
 
@@ -61,6 +69,7 @@ namespace N_Awakening.DungeonCrawler
         [SerializeField,HideInInspector] protected Animator _animator;
         [SerializeField,HideInInspector] protected Rigidbody2D _rigidbody;
         [SerializeField] protected Agent _agent;
+        [SerializeField] protected AnimationClip _deathClip;
 
         #endregion
 
@@ -69,6 +78,7 @@ namespace N_Awakening.DungeonCrawler
         [SerializeField] protected States _state;
         [SerializeField] protected Vector2 _movementDirection;
         [SerializeField] protected float _movementSpeed;
+        protected Coroutine _deathCoroutine;
 
         #endregion
 
@@ -79,7 +89,7 @@ namespace N_Awakening.DungeonCrawler
             switch (_state)
             {
                 case States.DEATH:
-                    gameObject.SetActive(false); //PROTOTYPE TO DELETE
+                    _deathCoroutine = StartCoroutine(DeathCooldown());
                     break;
                 case States.ATTACKING_UP:
                 case States.ATTACKING_LEFT:
@@ -147,6 +157,21 @@ namespace N_Awakening.DungeonCrawler
 
         #endregion
 
+        #region Corrutines
+
+        protected IEnumerator DeathCooldown()
+        {
+            if ( _agent as EnemyNPC)
+            {
+                _agent.KillEnemy();
+            }
+            yield return new WaitForSeconds(_deathClip.length);
+            gameObject.SetActive(false);
+            StopCoroutine(_deathCoroutine);
+        }
+
+        #endregion
+
         #region GettersSetters
 
         public Vector2 GetMovementDirection
@@ -162,6 +187,11 @@ namespace N_Awakening.DungeonCrawler
         public float SetMovementSpeed
         {
             set { _movementSpeed = value; }
+        }
+
+        public States GetCurrentState
+        {
+            get { return _state; }
         }
 
         #endregion

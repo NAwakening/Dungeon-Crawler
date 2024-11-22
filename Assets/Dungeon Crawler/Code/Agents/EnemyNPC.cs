@@ -86,7 +86,7 @@ namespace N_Awakening.DungeonCrawler
                 _currentEnemyBehaviour = scriptBehaviours.persecutionBehaviours[_currentEnemyBehaviourIndex];
             }
             InitializeSubState();
-            CalculateStateMechanicDirection();
+            CalculateMoveStateMechanicDirection();
             InvokeStateMechanic();
             if (_currentEnemyBehaviour.time > 0)
             {
@@ -147,7 +147,7 @@ namespace N_Awakening.DungeonCrawler
             }
             //Initialize the proper sub-state
             InitializeSubState();
-            CalculateStateMechanicDirection();
+            CalculateMoveStateMechanicDirection();
             InvokeStateMechanic();
             if (_currentEnemyBehaviour.time > 0)
             {
@@ -174,7 +174,7 @@ namespace N_Awakening.DungeonCrawler
                 _currentEnemyBehaviour.speed = 1.0f;
             }
             InitializeSubState();
-            CalculateStateMechanicDirection();
+            CalculateMoveStateMechanicDirection();
             InvokeStateMechanic();
             if (_currentEnemyBehaviour.time > 0)
             {
@@ -237,6 +237,12 @@ namespace N_Awakening.DungeonCrawler
         public override void InitializeAgent()
         {
             InitializePatrolBehaviour();
+        }
+
+        public override void KillEnemy()
+        {
+            StopAllCoroutines();
+            InitializeStopSubStateMachine();
         }
 
         #endregion
@@ -309,7 +315,7 @@ namespace N_Awakening.DungeonCrawler
         {
             //as the avatar may move, we have to update the direction towards him / her
             _fsm.SetMovementDirection = (_avatarsTransform.position - transform.position).normalized;
-            CalculateStateMechanicDirection();
+            CalculateMoveStateMechanicDirection();
             if (_previousMovementStateMechanic != _movementStateMechanic)
             {
                 InvokeStateMechanic();

@@ -41,7 +41,7 @@ namespace N_Awakening.DungeonCrawler
 
         #region LocalMethods
 
-        protected virtual void CalculateStateMechanicDirection()
+        protected virtual void CalculateMoveStateMechanicDirection()
         {
             if (Vector2.Dot(_fsm.GetMovementDirection, Vector2.down) >= 0.5f)
             {
@@ -105,6 +105,11 @@ namespace N_Awakening.DungeonCrawler
             */
         }
 
+        public virtual void KillEnemy()
+        {
+
+        }
+
         public void StateMechanic(StateMechanics value)
         {
             _fsm.StateMechanic(value);
@@ -113,6 +118,11 @@ namespace N_Awakening.DungeonCrawler
         #endregion
 
         #region GettersSetters
+
+        public bool IsDead
+        {
+            get { return _fsm.GetCurrentState == States.DEATH; }
+        }
 
         #endregion
     }

@@ -12,6 +12,7 @@ namespace N_Awakening.DungeonCrawler
         //TODO: Stored in a Sciptable Object for robustness
         public int maxHealthPoints = 3; //HP
         public float cooldownTime = 1f; //Damage (Hit Box) Per Second (Cooldown)
+        public List<string> tagsToReceiveDamage;
 
         #endregion
 
@@ -25,6 +26,7 @@ namespace N_Awakening.DungeonCrawler
 
         protected bool _isInCooldown;
         [SerializeField] protected int _currentHealthPoints;
+        
 
         #endregion
 
@@ -56,20 +58,20 @@ namespace N_Awakening.DungeonCrawler
                     //of entity -> Friendly Fire = false
                     if (other.gameObject.layer != gameObject.layer)
                     {
-                        //Damn, I am about to be hurt DX
-                        _currentHealthPoints -= 1; //other.gameObject.GetComponent<HitBox>().GetDamage;
-                        //check if I am already dead
-                        if (_currentHealthPoints <= 0)
+                        foreach (string damageTag in tagsToReceiveDamage)
                         {
-                            //so I will die, it is time :'(
-                            _agent.StateMechanic(StateMechanics.DIE); //DEATH
-                            // TODO: Complete the administration of this state
-                            //Animator
-                            //Initialize, Executing and Finalize
-                        }
-                        else
-                        {
-                            StartCoroutine(Cooldown());
+                            if (other.gameObject.CompareTag(damageTag))
+                            {
+                                _currentHealthPoints -= 1; 
+                                if (_currentHealthPoints <= 0)
+                                {
+                                    _agent.StateMechanic(StateMechanics.DIE); 
+                                }
+                                else
+                                {
+                                    StartCoroutine(Cooldown());
+                                }
+                            }
                         }
                     }
                 }
