@@ -96,6 +96,14 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.0769231
       objectReference: {fileID: 0}
+    - target: {fileID: 6962284850961860635, guid: d5b6008c36a72cd4dafacd6daf957cd1, type: 3}
+      propertyPath: _deathClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 570888adf16fa2f43a27f0d2f9df3a00, type: 2}
+    - target: {fileID: 8998276403885838987, guid: d5b6008c36a72cd4dafacd6daf957cd1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 1440fd8d54733544e8b04d60428c0a3c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

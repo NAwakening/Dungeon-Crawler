@@ -92,15 +92,56 @@ namespace N_Awakening.DungeonCrawler
                     _deathCoroutine = StartCoroutine(DeathCooldown());
                     break;
                 case States.ATTACKING_UP:
+                    if (_agent as PlayersAvatar)
+                    {
+                        ((PlayersAvatar)_agent).ActivateHitBox();
+                        ((PlayersAvatar)_agent).GetHitBox.gameObject.transform.position = _agent.GetHitBoxPositions[1].position;
+                    }
+                    else
+                    {
+                        ((EnemyNPC)_agent).GetProjectile.SetActive(true);
+                        ((EnemyNPC)_agent).GetProjectile.transform.position = _agent.GetHitBoxPositions[1].position;
+                        ((EnemyNPC)_agent).SetPlayerPosition();
+                    }
+                    break;
                 case States.ATTACKING_LEFT:
+                    if (_agent as PlayersAvatar)
+                    {
+                        ((PlayersAvatar)_agent).ActivateHitBox();
+                        ((PlayersAvatar)_agent).GetHitBox.gameObject.transform.position = _agent.GetHitBoxPositions[3].position;
+                    }
+                    else
+                    {
+                        ((EnemyNPC)_agent).GetProjectile.SetActive(true);
+                        ((EnemyNPC)_agent).GetProjectile.transform.position = _agent.GetHitBoxPositions[3].position;
+                        ((EnemyNPC)_agent).SetPlayerPosition();
+                    }
+                    break;
                 case States.ATTACKING_RIGHT:
+                    if (_agent as PlayersAvatar)
+                    {
+                        ((PlayersAvatar)_agent).ActivateHitBox();
+                        ((PlayersAvatar)_agent).GetHitBox.gameObject.transform.position = _agent.GetHitBoxPositions[2].position;
+                    }
+                    else
+                    {
+                        ((EnemyNPC)_agent).GetProjectile.SetActive(true);
+                        ((EnemyNPC)_agent).SetPlayerPosition();
+                        ((EnemyNPC)_agent).GetProjectile.transform.position = _agent.GetHitBoxPositions[2].position;
+                    }
+                    break;
                 case States.ATTACKING_DOWN:
                     if (_agent as PlayersAvatar)
                     {
                         ((PlayersAvatar)_agent).ActivateHitBox();
+                        ((PlayersAvatar)_agent).GetHitBox.gameObject.transform.position = _agent.GetHitBoxPositions[0].position;
                     }
-                    //TODO: Move the Hit Box according to the direction
-                    //the avatar is facing
+                    else
+                    {
+                        ((EnemyNPC)_agent).GetProjectile.SetActive(true);
+                        ((EnemyNPC)_agent).SetPlayerPosition();
+                        ((EnemyNPC)_agent).GetProjectile.transform.position = _agent.GetHitBoxPositions[0].position;
+                    }
                     break;
             }
         }

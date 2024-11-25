@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: _agent
       value: 
       objectReference: {fileID: 4456511550455532938}
+    - target: {fileID: 4952176715906159113, guid: bea63977193ced44890d7c209cbabdac, type: 3}
+      propertyPath: _deathClip
+      value: 
+      objectReference: {fileID: 7400000, guid: d3814e3302142ef4c8e455706667823d, type: 2}
     - target: {fileID: 6397055293645342873, guid: bea63977193ced44890d7c209cbabdac, type: 3}
       propertyPath: m_Controller
       value: 

@@ -29,6 +29,8 @@ namespace N_Awakening.DungeonCrawler
 
         #region References
 
+        [SerializeField, HideInInspector]protected GameObject _projectile;
+        [SerializeField, HideInInspector] protected Proyectile _proyectile;
 
         #endregion
 
@@ -52,14 +54,31 @@ namespace N_Awakening.DungeonCrawler
                     _fsm.StateMechanic(StateMechanics.STOP);
                     break;
                 case EnemyBehaviourType.FIRE:
-                    //_fsm.StateMechanic(StateMechanics.MOVE_RIGHT);
+                    if (CanFire())
+                    {
+                        _fsm.StateMechanic(StateMechanics.ATTACK);
+                    }
+                    else
+                    {
+                        _fsm.StateMechanic(StateMechanics.STOP);
+                    }
                     break;
                 case EnemyBehaviourType.MOVE_TO_RANDOM_DIRECTION:
                 case EnemyBehaviourType.PERSECUTE_THE_AVATAR:
-                    //TODO: Obtain the State Mechanic direction, 
-                    //according to the direction of the enemy
                     _fsm.StateMechanic(_movementStateMechanic);
                     break;
+            }
+        }
+
+        protected bool CanFire()
+        {
+            if (Vector2.Dot(_movementDirection, new Vector2(_avatarsTransform.position.x, _avatarsTransform.position.y)) >= 0.25f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -109,6 +128,9 @@ namespace N_Awakening.DungeonCrawler
                 case EnemyBehaviourType.PERSECUTE_THE_AVATAR:
                     InitializePersecuteTheAvatarSubStateMachine();
                     break;
+                case EnemyBehaviourType.FIRE:
+                    InitializeFireSubStateMachine();
+                    break;
             }
         }
 
@@ -124,6 +146,9 @@ namespace N_Awakening.DungeonCrawler
                     break;
                 case EnemyBehaviourType.PERSECUTE_THE_AVATAR:
                     FinalizePersecuteTheAvatarSubStateMachine();
+                    break;
+                case EnemyBehaviourType.FIRE:
+                    FinalizeFireSubStateMachine();
                     break;
             }
         }
@@ -209,6 +234,9 @@ namespace N_Awakening.DungeonCrawler
                 case EnemyBehaviourType.PERSECUTE_THE_AVATAR:
                     ExecutingPersecuteTheAvatarSubStateMachine();
                     break;
+                case EnemyBehaviourType.FIRE:
+                    ExecutingFireSubStateMachine();
+                    break;
             }
         }
 
@@ -245,9 +273,19 @@ namespace N_Awakening.DungeonCrawler
             InitializeStopSubStateMachine();
         }
 
+        public void SetPlayerPosition()
+        {
+            _proyectile.SetPlayerPosition = _avatarsTransform;
+        }
+
         #endregion
 
         #region GettersSetters
+
+        public GameObject GetProjectile
+        {
+            get { return _projectile; }
+        }
 
         #endregion
 
@@ -330,6 +368,26 @@ namespace N_Awakening.DungeonCrawler
         }
 
         #endregion PersecuteTheAvatarSubStateMachineMethods
+
+        #region StopSubStateMachineMethods
+
+        protected void InitializeFireSubStateMachine()
+        {
+            _fsm.SetMovementDirection = Vector2.zero;
+            _fsm.SetMovementSpeed = 0.0f;
+        }
+
+        protected void ExecutingFireSubStateMachine()
+        {
+            //do nothing
+        }
+
+        protected void FinalizeFireSubStateMachine()
+        {
+            //do nothing
+        }
+
+        #endregion StopSubStateMachineMethods
 
         #endregion SubStateMachineStates
 

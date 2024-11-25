@@ -29,6 +29,7 @@ namespace N_Awakening.DungeonCrawler
 
         [SerializeField, HideInInspector] protected Rigidbody2D _rigidbody;
         [SerializeField, HideInInspector] protected FiniteStateMachine _fsm;
+        [SerializeField, HideInInspector] protected Transform[] _hitboxPositions;
 
         #endregion
 
@@ -122,6 +123,11 @@ namespace N_Awakening.DungeonCrawler
         public bool IsDead
         {
             get { return _fsm.GetCurrentState == States.DEATH; }
+        }
+
+        public Transform[] GetHitBoxPositions
+        {
+            get { return _hitboxPositions; }
         }
 
         #endregion

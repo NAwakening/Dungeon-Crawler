@@ -133,9 +133,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5441446245945422751}
   _fsm: {fileID: 6962284850961860635}
+  _hitboxPositions:
+  - {fileID: 4695177687153683931}
+  - {fileID: 7589582636521781045}
+  - {fileID: 7852011551991702162}
+  - {fileID: 5843001080974100719}
+--- !u!4 &4695177687153683931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5994756794665962836, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 1304135904067985551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &5441446245945422751 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6456717340057506576, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 1304135904067985551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5843001080974100719 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4832285672614226016, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
   m_PrefabInstance: {fileID: 1304135904067985551}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6962284850961860635 stripped
@@ -149,3 +164,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bde01278646ef4d96054a83d7a46c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7589582636521781045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884095199812540346, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 1304135904067985551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7852011551991702162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9146470365368975901, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 1304135904067985551}
+  m_PrefabAsset: {fileID: 0}

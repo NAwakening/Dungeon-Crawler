@@ -224,7 +224,10 @@ namespace N_Awakening.DungeonCrawler
 
         #region GettersSetters
 
-
+        public HitBox GetHitBox
+        {
+            get { return _hitBox; }
+        }
 
         #endregion
     }

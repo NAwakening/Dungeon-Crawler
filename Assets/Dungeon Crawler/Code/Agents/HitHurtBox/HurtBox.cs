@@ -12,7 +12,6 @@ namespace N_Awakening.DungeonCrawler
         //TODO: Stored in a Sciptable Object for robustness
         public int maxHealthPoints = 3; //HP
         public float cooldownTime = 1f; //Damage (Hit Box) Per Second (Cooldown)
-        public List<string> tagsToReceiveDamage;
 
         #endregion
 
@@ -58,20 +57,18 @@ namespace N_Awakening.DungeonCrawler
                     //of entity -> Friendly Fire = false
                     if (other.gameObject.layer != gameObject.layer)
                     {
-                        foreach (string damageTag in tagsToReceiveDamage)
+                        if (_agent as DestroyableObjects && other.gameObject.layer != 6)
                         {
-                            if (other.gameObject.CompareTag(damageTag))
-                            {
-                                _currentHealthPoints -= 1; 
-                                if (_currentHealthPoints <= 0)
-                                {
-                                    _agent.StateMechanic(StateMechanics.DIE); 
-                                }
-                                else
-                                {
-                                    StartCoroutine(Cooldown());
-                                }
-                            }
+                            return;
+                        }
+                        _currentHealthPoints -= 1;
+                        if (_currentHealthPoints <= 0)
+                        {
+                            _agent.StateMechanic(StateMechanics.DIE);
+                        }
+                        else
+                        {
+                            StartCoroutine(Cooldown());
                         }
                     }
                 }

@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4266455649496883906, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: _agent
+      value: 
+      objectReference: {fileID: 4596535123460400308}
     - target: {fileID: 4658189665935228654, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
       propertyPath: m_SpriteSortPoint
       value: 1
@@ -79,6 +83,18 @@ PrefabInstance:
     - target: {fileID: 6495711580750186322, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252346721500424340, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: _agent
+      value: 
+      objectReference: {fileID: 4596535123460400308}
+    - target: {fileID: 8884095199812540346, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146470365368975901, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2660077242759885590, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
@@ -109,10 +125,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19585b5f2fcf6448807a09ec503afbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 3
   _rigidbody: {fileID: 8044921885514000781}
   _fsm: {fileID: 4952176715906159113}
+  _hitboxPositions:
+  - {fileID: 7281815275732006857}
+  - {fileID: 5581427104332655911}
+  - {fileID: 5247073673824499840}
+  - {fileID: 8444295300076081917}
   scriptBehaviours: {fileID: 11400000, guid: 35a780a15e68ef947a69b645c34ab9da, type: 2}
+  _projectile: {fileID: 736607101035624696, guid: 0ed139fdefb453649aad152e080f2e80, type: 3}
 --- !u!58 &626658013357685539
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,8 +180,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bde01278646ef4d96054a83d7a46c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5247073673824499840 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9146470365368975901, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 3909005602917481117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5581427104332655911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884095199812540346, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 3909005602917481117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7281815275732006857 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5994756794665962836, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 3909005602917481117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &8044921885514000781 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6456717340057506576, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 3909005602917481117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8444295300076081917 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4832285672614226016, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
   m_PrefabInstance: {fileID: 3909005602917481117}
   m_PrefabAsset: {fileID: 0}
