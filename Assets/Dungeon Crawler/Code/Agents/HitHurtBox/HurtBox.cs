@@ -61,6 +61,14 @@ namespace N_Awakening.DungeonCrawler
                         {
                             return;
                         }
+                        else if (_agent as PlayersAvatar)
+                        {
+                            if (((PlayersAvatar)_agent).IsCarrying)
+                            {
+                                ((PlayersAvatar)_agent).LooseSphere();
+                            }
+                            
+                        }
                         _currentHealthPoints -= 1;
                         if (_currentHealthPoints <= 0)
                         {

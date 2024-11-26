@@ -34,13 +34,16 @@ namespace N_Awakening.DungeonCrawler
         #region References
 
         [SerializeField] protected HitBox _hitBox;
+        [SerializeField] protected GameObject _sphere;
 
         #endregion
 
         #region RuntimeVariables
 
         protected Vector2 _movementInputVector;
-        protected bool _isCarrying;
+        protected bool _isCarrying, _canTeleport = true, _canOpenChest, _canPlaceSphere;
+        protected Chest _chest;
+        protected Pedestal _pedestal;
 
         #endregion
 
@@ -50,7 +53,7 @@ namespace N_Awakening.DungeonCrawler
         {
             base.InitializeAgent();
             _movementInputVector = Vector2.zero;
-            if (_hitBox == null )
+            if (_hitBox == null)
             {
                 _hitBox = transform.GetChild(0).gameObject.GetComponent<HitBox>();
             }
@@ -82,19 +85,39 @@ namespace N_Awakening.DungeonCrawler
 
         private void OnDrawGizmos()
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             InitializeAgent();
-            #endif
+#endif
         }
 
         void Update()
         {
-            
+
         }
 
         private void FixedUpdate()
         {
             _rigidbody.velocity = _movementInputVector;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Teleport"))
+            {
+                if (_canTeleport)
+                {
+                    other.GetComponent<Teleport>().PlayerTeleport(transform);
+                    _canTeleport = false;
+                }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Teleport"))
+            {
+                _canTeleport = true;
+            }
         }
 
         #endregion
@@ -216,8 +239,45 @@ namespace N_Awakening.DungeonCrawler
         {
             if (!IsDead)
             {
+                if (_isCarrying)
+                {
+                    _isCarrying = false;
+                    _sphere.SetActive(false);
+                    if (_canPlaceSphere)
+                    {
+                        if (!_pedestal.SpherePlaced)
+                        {
+                            _pedestal.PlaceSphere();
+                        }
+                        else
+                        {
+                            LooseSphere();
+                        }
+                    }
+                    else
+                    {
+                        LooseSphere();
+                    }
+                }
 
+                else
+                {
+                    if(_canOpenChest)
+                    {
+                        _sphere.SetActive(true);
+                        _isCarrying = true;
+                        _chest.OpenChest();
+                    }
+                }
             }
+        }
+
+        public void LooseSphere()
+        {
+            _sphere.SetActive(false);
+            _isCarrying = false;
+            _chest.CloseChest();
+            _chest = null;
         }
 
         #endregion
@@ -227,6 +287,32 @@ namespace N_Awakening.DungeonCrawler
         public HitBox GetHitBox
         {
             get { return _hitBox; }
+        }
+
+        public bool IsCarrying
+        {
+            set { _isCarrying = value; }
+            get { return _isCarrying; }
+        }
+
+        public bool CanOpenChest
+        {
+            set { _canOpenChest = value;}
+        }
+
+        public Chest SetChest
+        {
+            set { _chest = value; }
+        }
+
+        public bool CanPlaceSphere
+        {
+            set { _canPlaceSphere = value;}
+        }
+
+        public Pedestal SetPedestal
+        {
+            set { _pedestal = value; }
         }
 
         #endregion
