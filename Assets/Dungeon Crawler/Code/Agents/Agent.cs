@@ -27,9 +27,9 @@ namespace N_Awakening.DungeonCrawler
 
         #region References
 
-        [SerializeField, HideInInspector] protected Rigidbody2D _rigidbody;
-        [SerializeField, HideInInspector] protected FiniteStateMachine _fsm;
-        [SerializeField, HideInInspector] protected Transform[] _hitboxPositions;
+        [SerializeField] protected Rigidbody2D _rigidbody;
+        [SerializeField] protected FiniteStateMachine _fsm;
+        [SerializeField] protected Transform[] _hitboxPositions;
 
         #endregion
 

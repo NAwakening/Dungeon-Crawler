@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769508923412266510}
+  - component: {fileID: 1945327178797785210}
   - component: {fileID: 2520191108524812643}
   - component: {fileID: 84912327780850218}
   - component: {fileID: 25105965787837415}
   m_Layer: 0
   m_Name: Teleporter
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +35,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945327178797785210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272162776346351470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216ed8c415c65c54cbc003859b380e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _otherTeleport: {fileID: 0}
 --- !u!212 &2520191108524812643
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,9 +30,13 @@ namespace N_Awakening.DungeonCrawler
                 {
                     Debug.Log(":D");
                     _avatar = avatar;
-                    _avatar.gameObject.SetActive(true);
-                    this.transform.parent = avatar.transform;
-                    this.transform.localPosition = Vector2.zero;
+                    if(!avatar.AvatarActivated)
+                    {
+                        _avatar.gameObject.SetActive(true);
+                        this.transform.parent = avatar.transform;
+                        this.transform.localPosition = Vector2.zero;
+                        avatar.AvatarActivated = true;
+                    }
                 }
             }
             gameObject.name = this.name + "_Player" + _playerInput.playerIndex;

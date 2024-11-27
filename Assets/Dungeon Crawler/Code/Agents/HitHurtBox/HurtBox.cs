@@ -41,14 +41,14 @@ namespace N_Awakening.DungeonCrawler
             #endif
         }
 
-        private void Start()
+        private void OnEnable()
         {
             _currentHealthPoints = maxHealthPoints;
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (!_isInCooldown) //to be immune or not ;)
+            if (!_isInCooldown && _currentHealthPoints >= 1) //to be immune or not ;)
             {
                 //I have the potential to be harmed by a Hit Box :O
                 if (other.gameObject.CompareTag("HitBox"))
@@ -67,7 +67,9 @@ namespace N_Awakening.DungeonCrawler
                             {
                                 ((PlayersAvatar)_agent).LooseSphere();
                             }
-                            
+                            ((PlayersAvatar)_agent).LooseHeart();
+
+
                         }
                         _currentHealthPoints -= 1;
                         if (_currentHealthPoints <= 0)
@@ -92,6 +94,15 @@ namespace N_Awakening.DungeonCrawler
             _isInCooldown = true; //To be Inmune for a certain time ;)
             yield return new WaitForSeconds(cooldownTime);
             _isInCooldown = false;
+        }
+
+        #endregion
+
+        #region GettersAndSetter
+
+        public int GetCurrentHealthPoint
+        {
+            get { return _currentHealthPoints; }
         }
 
         #endregion

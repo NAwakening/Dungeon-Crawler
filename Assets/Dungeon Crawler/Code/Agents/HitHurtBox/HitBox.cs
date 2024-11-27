@@ -16,7 +16,7 @@ namespace N_Awakening.DungeonCrawler
 
         #region References
 
-        [SerializeField] protected Collider2D _collider;
+        [SerializeField] protected BoxCollider2D _collider;
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace N_Awakening.DungeonCrawler
             #if UNITY_EDITOR
             if (_collider == null)
             {
-                _collider = GetComponent<Collider2D>();
+                _collider = GetComponent<BoxCollider2D>();
             }
             #endif
         }

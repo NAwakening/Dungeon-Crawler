@@ -122,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1437349632472811433, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1437349632472811433, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
       propertyPath: m_Offset.x
@@ -295,11 +295,24 @@ MonoBehaviour:
   playerIndex: 0
   _hitBox: {fileID: 1670212689435041263}
   _sphere: {fileID: 6960490745035299272}
+  _hurtBox: {fileID: 1390930618166189189}
+  _uiManager: {fileID: 0}
 --- !u!4 &1042333807093295890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2742683217258075477, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
   m_PrefabInstance: {fileID: 2916338911577570887}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1390930618166189189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4266455649496883906, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 2916338911577570887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f9f4b37661ecf4baac85594807fdd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1670212689435041263 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4563592685656138664, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}

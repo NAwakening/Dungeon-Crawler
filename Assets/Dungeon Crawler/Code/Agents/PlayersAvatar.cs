@@ -35,13 +35,15 @@ namespace N_Awakening.DungeonCrawler
 
         [SerializeField] protected HitBox _hitBox;
         [SerializeField] protected GameObject _sphere;
+        [SerializeField] protected HurtBox _hurtBox;
+        [SerializeField] protected UIManager _uiManager;
 
         #endregion
 
         #region RuntimeVariables
 
         protected Vector2 _movementInputVector;
-        protected bool _isCarrying, _canTeleport = true, _canOpenChest, _canPlaceSphere;
+        protected bool _isCarrying, _canTeleport = true, _exitFirstTeleport, _canOpenChest, _canPlaceSphere, _avatarActivated;
         protected Chest _chest;
         protected Pedestal _pedestal;
 
@@ -83,6 +85,11 @@ namespace N_Awakening.DungeonCrawler
 
         #region UnityMethods
 
+        private void OnEnable()
+        {
+            _uiManager.ActivatePanel(playerIndex);
+        }
+
         private void OnDrawGizmos()
         {
 #if UNITY_EDITOR
@@ -108,15 +115,12 @@ namespace N_Awakening.DungeonCrawler
                 {
                     other.GetComponent<Teleport>().PlayerTeleport(transform);
                     _canTeleport = false;
+                    StartCoroutine(ResetTeleport());
                 }
             }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Teleport"))
+            if (other.CompareTag("Heart"))
             {
-                _canTeleport = true;
+                _uiManager.GainHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
             }
         }
 
@@ -136,6 +140,32 @@ namespace N_Awakening.DungeonCrawler
                 if (value.performed)
                 {
                     _movementInputVector = value.ReadValue<Vector2>();
+                    _fsm.SetMovementDirection = _movementInputVector;
+                    switch (_fsm.GetCurrentState)
+                    {
+                        case States.IDLE_DOWN:
+                        case States.IDLE_LEFT:
+                        case States.IDLE_RIGHT:
+                        case States.IDLE_UP:
+                        case States.MOVING_DOWN:
+                        case States.MOVING_LEFT:
+                        case States.MOVING_RIGHT:
+                        case States.MOVING_UP:
+                            _fsm.SetMovementSpeed = 3.0f;
+                            CalculateMoveStateMechanicDirection();
+                            _fsm.StateMechanic(_movementStateMechanic);
+                            break;
+                        case States.SPRINTING_DOWN:
+                        case States.SPRINTING_UP:
+                        case States.SPRINTING_LEFT:
+                        case States.SPRINTING_RIGHT:
+                            CalculateSprintStateMechanicDirection();
+                            _fsm.StateMechanic(_movementStateMechanic);
+                            break;
+                        default:
+                            break;
+
+                    }
                 }
                 else if (value.canceled)
                 {
@@ -143,33 +173,6 @@ namespace N_Awakening.DungeonCrawler
                     _fsm.SetMovementDirection = Vector2.zero;
                     _fsm.SetMovementSpeed = 0.0f;
                     _fsm.StateMechanic(StateMechanics.STOP);
-                }
-                switch (_fsm.GetCurrentState)
-                {
-                    case States.IDLE_DOWN:
-                    case States.IDLE_LEFT:
-                    case States.IDLE_RIGHT: 
-                    case States.IDLE_UP:
-                    case States.MOVING_DOWN:
-                    case States.MOVING_LEFT: 
-                    case States.MOVING_RIGHT:
-                    case States.MOVING_UP:
-                        _fsm.SetMovementDirection = _movementInputVector;
-                        _fsm.SetMovementSpeed = 3.0f;
-                        CalculateMoveStateMechanicDirection();
-                        _fsm.StateMechanic(_movementStateMechanic);
-                        break;
-                    case States.SPRINTING_DOWN:
-                    case States.SPRINTING_UP:
-                    case States.SPRINTIN_LEFT:
-                    case States.SPRINTIN_RIGHT:
-                        _fsm.SetMovementDirection = _movementInputVector;
-                        CalculateSprintStateMechanicDirection();
-                        _fsm.StateMechanic(_movementStateMechanic);
-                        break;
-                    default:
-                        break;
-
                 }
             }
             
@@ -210,8 +213,8 @@ namespace N_Awakening.DungeonCrawler
                         break;
                     case States.SPRINTING_DOWN:
                     case States.SPRINTING_UP:
-                    case States.SPRINTIN_LEFT:
-                    case States.SPRINTIN_RIGHT:
+                    case States.SPRINTING_LEFT:
+                    case States.SPRINTING_RIGHT:
                         if (value.canceled)
                         {
                             _fsm.SetMovementSpeed = 3.0f;
@@ -280,6 +283,26 @@ namespace N_Awakening.DungeonCrawler
             _chest = null;
         }
 
+        public void LooseHeart()
+        {
+            _uiManager.LooseHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
+        }
+
+        public void DeactivatePanel()
+        {
+            _uiManager.DeactivatePanel(playerIndex);
+        }
+
+        #endregion
+
+        #region Corrutinas
+
+        IEnumerator ResetTeleport()
+        {
+            yield return new WaitForSeconds(1);
+            _canTeleport = true;
+        }
+
         #endregion
 
         #region GettersSetters
@@ -313,6 +336,12 @@ namespace N_Awakening.DungeonCrawler
         public Pedestal SetPedestal
         {
             set { _pedestal = value; }
+        }
+
+        public bool AvatarActivated
+        {
+            set { _avatarActivated = value; }
+            get { return _avatarActivated; }
         }
 
         #endregion

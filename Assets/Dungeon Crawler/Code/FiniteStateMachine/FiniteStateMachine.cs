@@ -27,8 +27,8 @@ namespace N_Awakening.DungeonCrawler
         //
         SPRINTING_UP,
         SPRINTING_DOWN,
-        SPRINTIN_LEFT,
-        SPRINTIN_RIGHT,
+        SPRINTING_LEFT,
+        SPRINTING_RIGHT,
         DEATH
     }
 
@@ -206,7 +206,14 @@ namespace N_Awakening.DungeonCrawler
             {
                 _agent.KillEnemy();
             }
+            _movementDirection = Vector2.zero; 
+            _movementSpeed = 0;
             yield return new WaitForSeconds(_deathClip.length);
+            Debug.Log("died");
+            if(_agent as PlayersAvatar)
+            {
+                ((PlayersAvatar)_agent).DeactivatePanel();
+            }
             gameObject.SetActive(false);
             StopCoroutine(_deathCoroutine);
         }
