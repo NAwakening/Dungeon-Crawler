@@ -37,6 +37,7 @@ namespace N_Awakening.DungeonCrawler
         [SerializeField] protected GameObject _sphere;
         [SerializeField] protected HurtBox _hurtBox;
         [SerializeField] protected UIManager _uiManager;
+        [SerializeField] protected LevelManager _levelManager;
 
         #endregion
 
@@ -88,6 +89,7 @@ namespace N_Awakening.DungeonCrawler
         private void OnEnable()
         {
             _uiManager.ActivatePanel(playerIndex);
+            _levelManager.AddPlayer();
         }
 
         private void OnDrawGizmos()
@@ -234,7 +236,7 @@ namespace N_Awakening.DungeonCrawler
         {
             if (!IsDead)
             {
-
+                _levelManager.PauseGame();
             }
         }
 
@@ -288,10 +290,13 @@ namespace N_Awakening.DungeonCrawler
             _uiManager.LooseHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
         }
 
-        public void DeactivatePanel()
+        public void KillPlayer()
         {
             _uiManager.DeactivatePanel(playerIndex);
+            _levelManager.RemovePlayer();
         }
+
+
 
         #endregion
 
@@ -299,7 +304,7 @@ namespace N_Awakening.DungeonCrawler
 
         IEnumerator ResetTeleport()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.3f);
             _canTeleport = true;
         }
 

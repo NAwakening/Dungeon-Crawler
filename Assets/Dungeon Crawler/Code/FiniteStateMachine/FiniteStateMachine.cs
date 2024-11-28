@@ -212,7 +212,7 @@ namespace N_Awakening.DungeonCrawler
             Debug.Log("died");
             if(_agent as PlayersAvatar)
             {
-                ((PlayersAvatar)_agent).DeactivatePanel();
+                ((PlayersAvatar)_agent).KillPlayer();
             }
             gameObject.SetActive(false);
             StopCoroutine(_deathCoroutine);
