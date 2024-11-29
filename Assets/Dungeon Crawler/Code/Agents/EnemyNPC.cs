@@ -72,7 +72,7 @@ namespace N_Awakening.DungeonCrawler
 
         protected bool CanFire()
         {
-            if (Vector2.Dot(_movementDirection, new Vector2(_avatarsTransform.position.x, _avatarsTransform.position.y)) >= 0.25f)
+            if (Vector2.Dot(_movementDirection, _avatarsTransform.position - transform.position.normalized) >= 0.25f)
             {
                 return true;
             }
@@ -211,7 +211,7 @@ namespace N_Awakening.DungeonCrawler
 
         #region UnityMethods
 
-        void Start()
+        void OnEnable()
         {
             InitializeAgent();
         }
@@ -265,6 +265,7 @@ namespace N_Awakening.DungeonCrawler
         public override void InitializeAgent()
         {
             InitializePatrolBehaviour();
+            _fsm.ResetAnimator();
         }
 
         public override void KillEnemy()
@@ -369,7 +370,7 @@ namespace N_Awakening.DungeonCrawler
 
         #endregion PersecuteTheAvatarSubStateMachineMethods
 
-        #region StopSubStateMachineMethods
+        #region FireSubStateMachineMethods
 
         protected void InitializeFireSubStateMachine()
         {
@@ -387,7 +388,7 @@ namespace N_Awakening.DungeonCrawler
             //do nothing
         }
 
-        #endregion StopSubStateMachineMethods
+        #endregion FireSubStateMachineMethods
 
         #endregion SubStateMachineStates
 

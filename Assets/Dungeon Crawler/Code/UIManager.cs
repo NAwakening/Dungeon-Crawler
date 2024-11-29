@@ -77,25 +77,21 @@ namespace N_Awakening.DungeonCrawler
         }
         public void GainHeart(PlayerIndexes index, int currentLife)
         {
-            if (currentLife < 5)
+            switch (index)
             {
-                switch (index)
-                {
-                    case PlayerIndexes.ONE:
-                        _heartsp1[currentLife].color = Color.white;
-                        break;
-                    case PlayerIndexes.TWO:
-                        _heartsp2[currentLife].color = Color.white;
-                        break;
-                    case PlayerIndexes.THREE:
-                        _heartsp3[currentLife].color = Color.white;
-                        break;
-                    case PlayerIndexes.FOUR:
-                        _heartsp4[currentLife].color = Color.white;
-                        break;
-                }
+                case PlayerIndexes.ONE:
+                    _heartsp1[currentLife].color = Color.white;
+                    break;
+                case PlayerIndexes.TWO:
+                    _heartsp2[currentLife].color = Color.white;
+                    break;
+                case PlayerIndexes.THREE:
+                    _heartsp3[currentLife].color = Color.white;
+                    break;
+                case PlayerIndexes.FOUR:
+                    _heartsp4[currentLife].color = Color.white;
+                    break;
             }
-            
         }
 
         #endregion

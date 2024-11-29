@@ -296,11 +296,13 @@ MonoBehaviour:
   - {fileID: 5994941234348468733}
   - {fileID: 6239210204015000666}
   - {fileID: 7743747138762020391}
+  _spriteRenderer: {fileID: 7556437761730543785}
   playerIndex: 0
   _hitBox: {fileID: 1670212689435041263}
   _sphere: {fileID: 6960490745035299272}
   _hurtBox: {fileID: 1390930618166189189}
   _uiManager: {fileID: 0}
+  _levelManager: {fileID: 0}
 --- !u!4 &1042333807093295890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2742683217258075477, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
@@ -354,6 +356,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bde01278646ef4d96054a83d7a46c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &7556437761730543785 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4658189665935228654, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 2916338911577570887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7743747138762020391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4832285672614226016, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}

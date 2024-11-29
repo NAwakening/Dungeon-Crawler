@@ -100,6 +100,14 @@ PrefabInstance:
       propertyPath: _deathClip
       value: 
       objectReference: {fileID: 7400000, guid: 59bdd5967617e2342918b90caaa3739c, type: 2}
+    - target: {fileID: 8918750804854437810, guid: d5b6008c36a72cd4dafacd6daf957cd1, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918750804854437810, guid: d5b6008c36a72cd4dafacd6daf957cd1, type: 3}
+      propertyPath: _heart
+      value: 
+      objectReference: {fileID: 2634228526765873516, guid: 37bfa581fc86f00439ac7ff1f432112b, type: 3}
     - target: {fileID: 8998276403885838987, guid: d5b6008c36a72cd4dafacd6daf957cd1, type: 3}
       propertyPath: m_Controller
       value: 

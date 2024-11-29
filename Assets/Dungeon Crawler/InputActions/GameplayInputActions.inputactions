@@ -186,17 +186,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f2a77c8f-ae06-4797-bc03-1488794787a7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ATTACK",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e9906444-1736-4a77-9ead-b3ef96f58ffe",
                     "path": "<Keyboard>/q",
                     "interactions": "",

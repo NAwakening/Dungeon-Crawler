@@ -132,8 +132,10 @@ MonoBehaviour:
   - {fileID: 5581427104332655911}
   - {fileID: 5247073673824499840}
   - {fileID: 8444295300076081917}
+  _spriteRenderer: {fileID: 8546324871630455923}
   scriptBehaviours: {fileID: 11400000, guid: 35a780a15e68ef947a69b645c34ab9da, type: 2}
   _projectile: {fileID: 736607101035624696, guid: 0ed139fdefb453649aad152e080f2e80, type: 3}
+  _proyectile: {fileID: 0}
 --- !u!58 &626658013357685539
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -203,5 +205,10 @@ Rigidbody2D:
 --- !u!4 &8444295300076081917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4832285672614226016, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+  m_PrefabInstance: {fileID: 3909005602917481117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8546324871630455923 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4658189665935228654, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
   m_PrefabInstance: {fileID: 3909005602917481117}
   m_PrefabAsset: {fileID: 0}

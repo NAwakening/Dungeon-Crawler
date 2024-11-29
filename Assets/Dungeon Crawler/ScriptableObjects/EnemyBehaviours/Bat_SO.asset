@@ -21,7 +21,7 @@ MonoBehaviour:
     time: 4
   persecutionBehaviours:
   - type: 1
-    speed: 1
+    speed: 1.5
     time: 2
   - type: 2
     speed: 0

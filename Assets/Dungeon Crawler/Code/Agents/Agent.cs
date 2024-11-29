@@ -30,6 +30,7 @@ namespace N_Awakening.DungeonCrawler
         [SerializeField] protected Rigidbody2D _rigidbody;
         [SerializeField] protected FiniteStateMachine _fsm;
         [SerializeField] protected Transform[] _hitboxPositions;
+        [SerializeField] protected SpriteRenderer _spriteRenderer;
 
         #endregion
 
@@ -37,6 +38,9 @@ namespace N_Awakening.DungeonCrawler
 
         protected Vector2 _movementDirection;
         protected StateMechanics _movementStateMechanic;
+        protected bool _isInvincibile;
+        protected float _invincibilityCronometer;
+        protected Color _invincibilityColor;
 
         #endregion
 
@@ -114,6 +118,32 @@ namespace N_Awakening.DungeonCrawler
         public void StateMechanic(StateMechanics value)
         {
             _fsm.StateMechanic(value);
+        }
+
+        public void InvincibleMode(float time)
+        {
+            _invincibilityCronometer = time;
+            StartCoroutine(InvinibilityCorroutine());
+        }
+
+        #endregion
+
+        #region Corroutines
+
+        protected IEnumerator InvinibilityCorroutine() 
+        {
+            _invincibilityColor = _spriteRenderer.color;
+            while (_invincibilityCronometer > 0f)
+            {
+                Debug.Log("parpadeo");
+                _invincibilityColor.a = 0.5f;
+                _spriteRenderer.color = _invincibilityColor;
+                yield return new WaitForSeconds(0.25f);
+                _invincibilityColor.a = 1f;
+                _spriteRenderer.color = _invincibilityColor;
+                yield return new WaitForSeconds(0.25f);
+                _invincibilityCronometer -= 0.5f;
+            }
         }
 
         #endregion

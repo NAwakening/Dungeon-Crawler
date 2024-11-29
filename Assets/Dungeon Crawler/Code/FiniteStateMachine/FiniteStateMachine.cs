@@ -196,6 +196,11 @@ namespace N_Awakening.DungeonCrawler
             InitializeState();
         }
 
+        public void ResetAnimator()
+        {
+            _animator.Play("IDLE_DOWN");
+        }
+
         #endregion
 
         #region Corrutines
@@ -213,6 +218,10 @@ namespace N_Awakening.DungeonCrawler
             if(_agent as PlayersAvatar)
             {
                 ((PlayersAvatar)_agent).KillPlayer();
+            }
+            else if (_agent as DestroyableObjects)
+            {
+                ((DestroyableObjects)_agent).Destroy();
             }
             gameObject.SetActive(false);
             StopCoroutine(_deathCoroutine);

@@ -26,13 +26,18 @@ namespace N_Awakening.DungeonCrawler
         {
             if (other.CompareTag("Player"))
             {
-                SceneManager.LoadScene(2);
+                LoadScene(2);
             }
         }
 
         #endregion
 
         #region PublicMethods
+
+        public void LoadScene(int id)
+        {
+            SceneManager.LoadScene(id);
+        }
 
         public void AddPlayer()
         {
@@ -44,7 +49,7 @@ namespace N_Awakening.DungeonCrawler
             _playersAlive--;
             if (_playersAlive == 0)
             {
-                SceneManager.LoadScene(3);
+                LoadScene(3);
             }
         }
 

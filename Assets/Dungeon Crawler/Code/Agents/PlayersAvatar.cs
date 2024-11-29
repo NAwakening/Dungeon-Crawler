@@ -122,7 +122,12 @@ namespace N_Awakening.DungeonCrawler
             }
             if (other.CompareTag("Heart"))
             {
-                _uiManager.GainHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
+                if (_hurtBox.GetCurrentHealthPoint < 5)
+                {
+                    _uiManager.GainHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
+                    _hurtBox.GainLife();
+                }
+                other.gameObject.SetActive(false);
             }
         }
 

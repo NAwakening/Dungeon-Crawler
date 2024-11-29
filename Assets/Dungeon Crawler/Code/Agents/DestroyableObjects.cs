@@ -6,6 +6,11 @@ namespace N_Awakening.DungeonCrawler
 {
     #region Enums
 
+    public enum DestroyableType
+    {
+        Bush,
+        Vase
+    }
 
     #endregion
 
@@ -18,14 +23,20 @@ namespace N_Awakening.DungeonCrawler
     {
         #region Knobs
 
+        public DestroyableType _type;
 
         #endregion
 
         #region References
 
+        [SerializeField] protected GameObject _heart;
+
         #endregion
 
         #region RuntimeVariables
+
+        protected GameObject _heartInstance;
+        protected int _index;
 
         #endregion
 
@@ -52,6 +63,24 @@ namespace N_Awakening.DungeonCrawler
         #endregion
 
         #region PublicMethods
+
+        public void Destroy()
+        {
+            if (_type == DestroyableType.Vase)
+            {
+                _heartInstance = Instantiate(_heart);
+                _heartInstance.transform.position = transform.position;
+            }
+            else
+            {
+                _index = Random.Range(1, 11);
+                if (_index == 1)
+                {
+                    _heartInstance = Instantiate(_heart);
+                    _heartInstance.transform.position = transform.position;
+                }
+            }
+        }
 
         #endregion
 

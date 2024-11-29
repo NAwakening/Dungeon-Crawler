@@ -15,13 +15,13 @@ MonoBehaviour:
   patrolBehaviours:
   - type: 0
     speed: 0
-    time: 3
+    time: 2
   - type: 1
-    speed: 1
+    speed: 2
     time: 4
   persecutionBehaviours:
   - type: 3
-    speed: 2.5
+    speed: 3
     time: 6
   - type: 0
     speed: 0

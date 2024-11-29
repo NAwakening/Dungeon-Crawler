@@ -87,11 +87,21 @@ namespace N_Awakening.DungeonCrawler
 
         #endregion
 
+        #region PublicMethods
+
+        public void GainLife()
+        {
+            _currentHealthPoints ++;
+        }
+
+        #endregion
+
         #region Coroutines
 
         protected IEnumerator Cooldown()
         {
             _isInCooldown = true; //To be Inmune for a certain time ;)
+            _agent.InvincibleMode(cooldownTime);
             yield return new WaitForSeconds(cooldownTime);
             _isInCooldown = false;
         }
