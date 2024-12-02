@@ -89,6 +89,12 @@ namespace N_Awakening.DungeonCrawler
             GoToNextEnemyBehaviour();
         }
 
+        protected IEnumerator TimerToMoveAgain()
+        {
+            yield return new WaitForSeconds(1f);
+            _fsm.SetMovementSpeed = _currentEnemyBehaviour.speed;
+        }
+
         protected void GoToNextEnemyBehaviour()
         {
             _currentEnemyBehaviourIndex++;
@@ -272,11 +278,18 @@ namespace N_Awakening.DungeonCrawler
         {
             StopAllCoroutines();
             InitializeStopSubStateMachine();
+            _hitBox.DeactiveteHitBox();
         }
 
         public void SetPlayerPosition()
         {
             _proyectile.SetPlayerPosition = _avatarsTransform;
+        }
+
+        public void StopAfterHit()
+        {
+            _fsm.SetMovementSpeed = 0.0f;
+            StartCoroutine(TimerToMoveAgain());
         }
 
         #endregion

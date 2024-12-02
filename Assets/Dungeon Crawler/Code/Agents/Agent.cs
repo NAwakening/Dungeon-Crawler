@@ -21,12 +21,13 @@ namespace N_Awakening.DungeonCrawler
         //Configuration parameter of this script
         #region Knobs
 
-        
+
 
         #endregion
 
         #region References
 
+        [SerializeField] protected HitBox _hitBox;
         [SerializeField] protected Rigidbody2D _rigidbody;
         [SerializeField] protected FiniteStateMachine _fsm;
         [SerializeField] protected Transform[] _hitboxPositions;

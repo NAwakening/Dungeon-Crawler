@@ -18,6 +18,7 @@ namespace N_Awakening.DungeonCrawler
         #region References
 
         [SerializeField] protected Agent _agent;
+        [SerializeField] protected AudioSource _hurtSound;
 
         #endregion
 
@@ -68,10 +69,13 @@ namespace N_Awakening.DungeonCrawler
                                 ((PlayersAvatar)_agent).LooseSphere();
                             }
                             ((PlayersAvatar)_agent).LooseHeart();
-
-
+                        }
+                        else if (_agent as EnemyNPC)
+                        {
+                            ((EnemyNPC)_agent).StopAfterHit();
                         }
                         _currentHealthPoints -= 1;
+                        _hurtSound.Play();
                         if (_currentHealthPoints <= 0)
                         {
                             _agent.StateMechanic(StateMechanics.DIE);

@@ -50,6 +50,11 @@ namespace N_Awakening.DungeonCrawler
             }
         }
 
+        public void DeactiveteHitBox()
+        {
+            _collider.enabled = false;
+        }
+
         #endregion
 
         #region Coroutines

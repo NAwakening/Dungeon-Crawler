@@ -36,7 +36,7 @@ public class Proyectile : MonoBehaviour
 
     private void OnEnable()
     {
-        TimerToDestruction();
+        StartCoroutine(TimerToDestruction());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

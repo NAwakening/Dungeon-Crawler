@@ -22,7 +22,7 @@ MonoBehaviour:
   persecutionBehaviours:
   - type: 3
     speed: 3
-    time: 6
+    time: 4
   - type: 0
     speed: 0
     time: 1

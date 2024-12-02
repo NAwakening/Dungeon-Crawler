@@ -33,11 +33,11 @@ namespace N_Awakening.DungeonCrawler
 
         #region References
 
-        [SerializeField] protected HitBox _hitBox;
         [SerializeField] protected GameObject _sphere;
         [SerializeField] protected HurtBox _hurtBox;
         [SerializeField] protected UIManager _uiManager;
         [SerializeField] protected LevelManager _levelManager;
+        [SerializeField] protected AudioSource _healSound;
 
         #endregion
 
@@ -128,6 +128,7 @@ namespace N_Awakening.DungeonCrawler
                     _hurtBox.GainLife();
                 }
                 other.gameObject.SetActive(false);
+                _healSound.Play();
             }
         }
 
@@ -142,7 +143,7 @@ namespace N_Awakening.DungeonCrawler
 
         public void OnMOVE(InputAction.CallbackContext value)
         {
-            if (!IsDead) //_fsm.GetCurrentState == States.DEATH
+            if (!IsDead && !_levelManager.IsPaused) //_fsm.GetCurrentState == States.DEATH
             {
                 if (value.performed)
                 {
@@ -187,7 +188,7 @@ namespace N_Awakening.DungeonCrawler
 
         public void OnATTACK(InputAction.CallbackContext value)
         {
-            if (!_isCarrying && !_hitBox.IsHitBoxActive && !IsDead)
+            if (!_isCarrying && !_hitBox.IsHitBoxActive && !IsDead && !_levelManager.IsPaused)
             {
                 if (value.performed)
                 {
@@ -203,7 +204,7 @@ namespace N_Awakening.DungeonCrawler
 
         public void OnSPRINT(InputAction.CallbackContext value)
         {
-            if (!_isCarrying && !IsDead)
+            if (!_isCarrying && !IsDead && !_levelManager.IsPaused)
             {
                 switch (_fsm.GetCurrentState)
                 {
@@ -247,7 +248,7 @@ namespace N_Awakening.DungeonCrawler
 
         public void OnINTERACT(InputAction.CallbackContext value)
         {
-            if (!IsDead)
+            if (!IsDead && !_levelManager.IsPaused)
             {
                 if (_isCarrying)
                 {

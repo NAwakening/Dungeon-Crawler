@@ -16,7 +16,7 @@ namespace N_Awakening.DungeonCrawler
         #region RuntimeVariables
 
         protected int _playersAlive;
-        protected bool _pause;
+        protected bool _paused;
 
         #endregion
 
@@ -44,6 +44,11 @@ namespace N_Awakening.DungeonCrawler
             _playersAlive++;
         }
 
+        public void Quit()
+        {
+            Application.Quit();
+        }
+
         public void RemovePlayer()
         {
             _playersAlive--;
@@ -55,18 +60,27 @@ namespace N_Awakening.DungeonCrawler
 
         public void PauseGame()
         {
-            if (!_pause)
+            if (!_paused)
             {
-                _pause = true;
+                _paused = true;
                 _pausePanel.SetActive(true);
                 Time.timeScale= 0;
             }
             else
             {
-                _pause = false;
+                _paused = false;
                 _pausePanel.SetActive(false);
                 Time.timeScale= 1;
             }
+        }
+
+        #endregion
+
+        #region GettersAndSetters
+
+        public bool IsPaused
+        {
+            get { return _paused; }
         }
 
         #endregion

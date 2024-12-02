@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Dungeon Crawler/Scenes/Tittle.unity
+    guid: 334119da35443f2449fc68c2af4a7ae2
+  - enabled: 1
+    path: Assets/Dungeon Crawler/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Dungeon Crawler/Scenes/Victory.unity
+    guid: 252ef244efeefda4ea7afd95cccbd0c1
+  - enabled: 1
+    path: Assets/Dungeon Crawler/Scenes/Defeat.unity
+    guid: 69d8482198c6bd64f8054b364f85c605
+  - enabled: 1
+    path: Assets/Dungeon Crawler/Scenes/Credits.unity
+    guid: 778170381bf44f4458618b2204ee3a5d
   m_configObjects: {}
