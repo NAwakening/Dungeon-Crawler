@@ -5,8 +5,26 @@ using UnityEngine.SceneManagement;
 
 namespace N_Awakening.DungeonCrawler 
 {
+    #region
+
+    public enum GameStates
+    {
+        GAME,
+        PAUSE,
+        VICTORY,
+        DEFEAT
+    }
+
+    #endregion
+
     public class LevelManager : MonoBehaviour
     {
+        #region Knobs
+
+        public GameStates state;
+
+        #endregion
+
         #region References
 
         [SerializeField] protected GameObject _pausePanel;
@@ -22,11 +40,16 @@ namespace N_Awakening.DungeonCrawler
 
         #region UnityMethods
 
+        void Start ()
+        {
+            ChangeState(GameStates.GAME);
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                LoadScene(2);
+                ChangeState(GameStates.VICTORY);
             }
         }
 
@@ -54,7 +77,7 @@ namespace N_Awakening.DungeonCrawler
             _playersAlive--;
             if (_playersAlive == 0)
             {
-                LoadScene(3);
+                ChangeState(GameStates.DEFEAT);
             }
         }
 
@@ -62,16 +85,67 @@ namespace N_Awakening.DungeonCrawler
         {
             if (!_paused)
             {
-                _paused = true;
-                _pausePanel.SetActive(true);
-                Time.timeScale= 0;
+                ChangeState(GameStates.PAUSE);
             }
             else
             {
-                _paused = false;
-                _pausePanel.SetActive(false);
-                Time.timeScale= 1;
+                ChangeState(GameStates.GAME);
             }
+        }
+
+        #endregion
+
+        #region LocalMethods
+
+        protected void ChangeState(GameStates nextState)
+        {
+            switch (nextState)
+            {
+                case GameStates.GAME:
+                    GameState();
+                    break;
+                case GameStates.PAUSE:
+                    PauseState();
+                    break;
+                case GameStates.VICTORY:
+                    VictoryState();
+                    break;
+                case GameStates.DEFEAT:
+                    DefeatState();
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region FiniteStateMethods
+
+        protected void GameState()
+        {
+            state = GameStates.GAME;
+            _paused = false;
+            _pausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+
+        protected void PauseState()
+        {
+            state = GameStates.PAUSE;
+            _paused = true;
+            _pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        protected void VictoryState()
+        {
+            state = GameStates.VICTORY;
+            LoadScene(2);
+        }
+
+        protected void DefeatState()
+        {
+            state = GameStates.DEFEAT;
+            LoadScene(3);
         }
 
         #endregion

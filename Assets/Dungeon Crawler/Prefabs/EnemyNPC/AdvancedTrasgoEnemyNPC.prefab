@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 765840461007114781, guid: 944fbdbf62efe6f498c2fa3aeb7078a2, type: 3}
       propertyPath: m_Radius
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1087747813518176609, guid: 944fbdbf62efe6f498c2fa3aeb7078a2, type: 3}
       propertyPath: maxHealthPoints
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1776118468614869187, guid: 944fbdbf62efe6f498c2fa3aeb7078a2, type: 3}
       propertyPath: m_Name
-      value: AdvancedTrasgoEnemyNPC Variant
+      value: AdvancedTrasgoEnemyNPC
       objectReference: {fileID: 0}
     - target: {fileID: 4456511550455532938, guid: 944fbdbf62efe6f498c2fa3aeb7078a2, type: 3}
       propertyPath: scriptBehaviours
