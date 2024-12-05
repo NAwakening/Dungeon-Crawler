@@ -109,32 +109,25 @@ namespace N_Awakening.DungeonCrawler
             _rigidbody.velocity = _movementInputVector;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Teleport"))
-            {
-                if (_canTeleport)
-                {
-                    other.GetComponent<Teleport>().PlayerTeleport(transform);
-                    _canTeleport = false;
-                    StartCoroutine(ResetTeleport());
-                }
-            }
-            if (other.CompareTag("Heart"))
-            {
-                if (_hurtBox.GetCurrentHealthPoint < 5)
-                {
-                    _uiManager.GainHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
-                    _hurtBox.GainLife();
-                }
-                other.gameObject.SetActive(false);
-                _healSound.Play();
-            }
-        }
-
         #endregion
 
         #region PublicMethods
+
+        public void Teleport()
+        {
+            _canTeleport = false;
+            StartCoroutine(ResetTeleport());
+        }
+
+        public void GainLife()
+        {
+            if (_hurtBox.GetCurrentHealthPoint < 5)
+            {
+                _uiManager.GainHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
+                _hurtBox.GainLife();
+            }
+            _healSound.Play();
+        }
 
         public void ActivateHitBox()
         {
@@ -321,6 +314,11 @@ namespace N_Awakening.DungeonCrawler
         public HitBox GetHitBox
         {
             get { return _hitBox; }
+        }
+
+        public bool CanTeleport
+        {
+            get { return _canTeleport; }
         }
 
         public bool IsCarrying
