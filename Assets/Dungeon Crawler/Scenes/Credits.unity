@@ -1724,10 +1724,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This game was inspired by the second level of "Kamiko" made by "SKIPMORE"
+  m_text: 'This game was inspired by the second level of "Kamiko" made by "FLYHIGH
+    WORKS"
 
-    This
-    Game was mede for academic purposes only'
+    This Game was mede for academic purposes only'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4e177a94c5f58e46b6ea01d647b060d, type: 2}
   m_sharedMaterial: {fileID: 2581434300100673769, guid: b4e177a94c5f58e46b6ea01d647b060d, type: 2}
