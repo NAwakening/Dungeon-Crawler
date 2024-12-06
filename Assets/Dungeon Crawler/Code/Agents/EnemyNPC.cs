@@ -272,6 +272,7 @@ namespace N_Awakening.DungeonCrawler
         {
             InitializePatrolBehaviour();
             _fsm.ResetAnimator();
+            _hitBox.StartHitbox();
         }
 
         public override void KillEnemy()

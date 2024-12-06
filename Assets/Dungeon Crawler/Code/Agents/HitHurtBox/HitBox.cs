@@ -55,6 +55,11 @@ namespace N_Awakening.DungeonCrawler
             _collider.enabled = false;
         }
 
+        public void StartHitbox()
+        {
+            _collider.enabled = true;
+        }
+
         #endregion
 
         #region Coroutines

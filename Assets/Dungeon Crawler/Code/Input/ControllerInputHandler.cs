@@ -72,6 +72,24 @@ namespace N_Awakening.DungeonCrawler
             _avatar?.OnINTERACT(value);
         }
 
+        public void ControllerVibration(float vibrationTime)
+        {
+            StartCoroutine(VibrationCorrutineForControler(vibrationTime));
+        }
+
+        #endregion
+
+        #region Corrutinas
+
+        protected IEnumerator VibrationCorrutineForControler(float time)
+        {
+            GetComponent<PlayerInput>().GetDevice<Gamepad>()?.SetMotorSpeeds(0.25f, 0.75f);
+
+            yield return new WaitForSeconds(time);
+
+            GetComponent<PlayerInput>().GetDevice<Gamepad>()?.SetMotorSpeeds(0f, 0f);
+        }
+
         #endregion
     }
 }

@@ -136,6 +136,18 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8495a422ad829c7408725b335b94b442, type: 3}
+    - target: {fileID: 2609002933081259094, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7710343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609002933081259094, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.060000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609002933081259094, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.37551716
+      objectReference: {fileID: 0}
     - target: {fileID: 2742683217258075477, guid: ab90cba76176bc44f9b70b84ee440fb0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -315,6 +327,7 @@ MonoBehaviour:
   _uiManager: {fileID: 0}
   _levelManager: {fileID: 0}
   _healSound: {fileID: 4339275995169480413}
+  _controllerInputHandler: {fileID: 0}
 --- !u!82 &4339275995169480413
 AudioSource:
   m_ObjectHideFlags: 0

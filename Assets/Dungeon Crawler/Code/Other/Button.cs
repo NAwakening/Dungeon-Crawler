@@ -35,13 +35,16 @@ namespace N_Awakening.DungeonCrawler
                 {
                     _activated = true;
                     _anim.Play("BActivated");
+                    
                     if(_activatesObject)
                     {
                         _objectToModify.SetActive(true);
                     }
                     else
                     {
-                        _objectToModify.SetActive(false);
+                        _objectToModify.GetComponent<Animator>().Play("Activate");
+                        _objectToModify.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                        _objectToModify.GetComponent<BoxCollider2D>().enabled = false;
                     }
                 }
             }

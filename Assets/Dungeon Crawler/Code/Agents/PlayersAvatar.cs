@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,8 @@ namespace N_Awakening.DungeonCrawler
         [SerializeField] protected UIManager _uiManager;
         [SerializeField] protected LevelManager _levelManager;
         [SerializeField] protected AudioSource _healSound;
+        [SerializeField] protected ControllerInputHandler _controllerInputHandler;
+        [SerializeField] protected CinemachineImpulseSource _impulseSource;
 
         #endregion
 
@@ -90,6 +93,11 @@ namespace N_Awakening.DungeonCrawler
         {
             _uiManager.ActivatePanel(playerIndex);
             _levelManager.AddPlayer();
+        }
+
+        private void Start()
+        {
+            _controllerInputHandler = transform.GetChild(4).GetComponent<ControllerInputHandler>();
         }
 
         private void OnDrawGizmos()
@@ -287,6 +295,8 @@ namespace N_Awakening.DungeonCrawler
         public void LooseHeart()
         {
             _uiManager.LooseHeart(playerIndex, _hurtBox.GetCurrentHealthPoint);
+            _impulseSource.GenerateImpulse();
+            _controllerInputHandler.ControllerVibration(0.2f);
         }
 
         public void KillPlayer()
@@ -351,6 +361,11 @@ namespace N_Awakening.DungeonCrawler
         {
             set { _avatarActivated = value; }
             get { return _avatarActivated; }
+        }
+
+        public ControllerInputHandler GetControllerInputHandler
+        {
+            get { return _controllerInputHandler; }
         }
 
         #endregion

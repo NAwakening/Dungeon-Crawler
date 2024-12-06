@@ -10,6 +10,7 @@ namespace N_Awakening.DungeonCrawler
         #region References
 
         [SerializeField] protected GameObject[] _heartpanels;
+        [SerializeField] protected GameObject _initialText;
         [SerializeField] protected Image[] _heartsp1;
         [SerializeField] protected Image[] _heartsp2;
         [SerializeField] protected Image[] _heartsp3;
@@ -36,6 +37,7 @@ namespace N_Awakening.DungeonCrawler
                     _heartpanels[3].SetActive(true);
                     break;
             }
+            _initialText.SetActive(false);
         }
 
         public void DeactivatePanel(PlayerIndexes index)
